@@ -82,3 +82,5 @@ MEMI have been named after Memi Kakizaki (柿崎芽実).
 ## License
 
 MIT © 3846masa
+
+[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/3846masa)
