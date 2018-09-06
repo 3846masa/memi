@@ -24,23 +24,31 @@ yarn global add memi
 2. Write task functions as module
     - Legacy module
       ```js
+      var cowsay = require('cowsay');
+
       module.exports = {
         start: function () {
           this.echo();
         },
         echo: function () {
-          console.log('Hello Memi!');
+          console.log(cowsay.say({
+            text: 'Hello Memi!',
+          }));
         }
       };
       ```
     - ES module
       ```js
+      import cowsay from 'cowsay';
+
       export default {
         start() {
           this.echo();
         },
         echo() {
-          console.log('Hello Memi!');
+          console.log(cowsay.say({
+            text: 'Hello Memi!',
+          }));
         }
       };
       ```
