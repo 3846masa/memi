@@ -1,7 +1,7 @@
 import { initialize, findMemifile, importMemifile, installDependencies } from './helpers';
 
 async function main() {
-  const [, , taskName = 'start', ...argv] = process.argv;
+  const [, , taskName, ...argv] = process.argv;
   await initialize();
 
   const memifilePath = await findMemifile();
@@ -11,6 +11,12 @@ async function main() {
   await installDependencies(memifilePath);
 
   const tasks = await importMemifile(memifilePath);
+  if (!taskName) {
+    const taskNameList = Object.keys(tasks);
+    console.log(`Usage: memi <taskname> [<args>...]`);
+    console.log(`Tasks: ${taskNameList.join(',\x20')}`);
+    process.exit(1);
+  }
   if (!taskName in tasks || typeof tasks[taskName] !== 'function') {
     throw new Error(`${taskName} is not exists in Memifile.`);
   }
