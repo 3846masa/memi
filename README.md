@@ -21,36 +21,26 @@ yarn global add memi
 
 ## Usage
 
-1. Put Memifile on working directory.
-    - Memifile name allows `Memifile`, `.memifile.js`
+1. Put Memifile on working directory
+    - MEMI loads Memifile named as below
+        - `Memifile` / `.memifile`
+        - `Memifile.{js,mjs}` / `.memifile.{js,mjs}`
 2. Write task functions as module
-    - Legacy module
+    - See [example](./example)
       ```js
-      var cowsay = require('cowsay');
-
-      module.exports = {
-        start: function () {
-          this.echo();
-        },
-        echo: function () {
-          console.log(cowsay.say({
-            text: 'Hello Memi!',
-          }));
-        }
-      };
-      ```
-    - ES module
-      ```js
+      import inquirer from 'inquirer';
       import cowsay from 'cowsay';
 
       export default {
-        start() {
-          this.echo();
+        async start() {
+          const { text } = await inquirer.prompt([{
+            name: 'text',
+            message: "How's it going?",
+          }]);
+          this.echo(text);
         },
-        echo() {
-          console.log(cowsay.say({
-            text: 'Hello Memi!',
-          }));
+        echo(text = 'Hello Memi!') {
+          console.log(cowsay.say({ text }));
         }
       };
       ```
@@ -58,6 +48,23 @@ yarn global add memi
     ```bash
     memi <taskname> [<args>...]
     ```
+
+### Tips: Useful libraries when you write tasks
+
+- [execa - npm](https://www.npmjs.com/package/execa)
+  - A better `child_process`
+- [fs-extra - npm](https://www.npmjs.com/package/fs-extra)
+  - Node.js: extra methods for the fs object like copy(), remove(), mkdirs()
+- [shelljs - npm](https://www.npmjs.com/package/shelljs)
+  - Portable Unix shell commands for Node.js
+- [simple-git - npm](https://www.npmjs.com/package/simple-git)
+  - A light weight interface for running git commands in any node.js application.
+- [glob - npm](https://www.npmjs.com/package/glob)
+  - Match files using the patterns the shell uses, like stars and stuff.
+- [opn - npm](https://www.npmjs.com/package/opn)
+  - A better node-open. Opens stuff like websites, files, executables. Cross-platform.
+- [inquirer - npm](https://www.npmjs.com/package/inquirer/v/5.0.0)
+  - A collection of common interactive command line user interfaces.
 
 ## Note
 
