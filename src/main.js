@@ -15,7 +15,15 @@ async function main() {
     throw new Error(`${taskName} is not exists in Memifile.`);
   }
 
-  await tasks[taskName](...argv);
+  try {
+    await tasks[taskName](...argv);
+  } catch (err) {
+    console.error(err.stack || err);
+    process.exit(1);
+  }
 }
 
-main().catch(err => console.error(err.stack || err));
+main().catch(err => {
+  console.error(err.message ? `Error: ${err.message}` : err);
+  process.exit(1);
+});
