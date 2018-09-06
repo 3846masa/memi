@@ -44,6 +44,9 @@ export async function installDependencies(filePath) {
   const notInstalled = await _findNotInstalledDependencies(filePath);
 
   if (notInstalled.length !== 0) {
+    const originalLogger = console.log;
+    console.log = () => {};
+
     await util.promisify(npm.load)({
       global: true,
       progress: false,
@@ -52,5 +55,7 @@ export async function installDependencies(filePath) {
       prefix: MEMI_MODULES_FOLDER,
     });
     await util.promisify(npm.commands.install)(notInstalled);
+
+    console.log = originalLogger;
   }
 }
