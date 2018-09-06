@@ -34,7 +34,10 @@ export async function _findNotInstalledDependencies(filePath) {
     }
   }
 
-  return notInstalled;
+  return notInstalled.map(moduleName => {
+    const paths = moduleName.split('/');
+    return /^@/.test(moduleName) ? paths.slice(0, 2).join('/') : paths[0];
+  });
 }
 
 /**
