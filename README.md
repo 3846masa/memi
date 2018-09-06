@@ -1,5 +1,7 @@
 # MEMI
 
+[![NPM](https://nodei.co/npm/memi.png?compact=true)](https://www.npmjs.com/package/memi)
+
 > Simple task-runner with JavaScript.
 
 MEMI is simple task-runner, inspired by [mimorisuzuko/memi].
