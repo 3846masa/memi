@@ -1,7 +1,7 @@
 import findUp from 'find-up';
 
 const MEMIFILE_BASENAME = ['Memifile', 'memifile', '.Memifile', '.memifile'];
-const MEMIFILE_EXTENSION = ['', '.js', '.es6', '.mjs'];
+const MEMIFILE_EXTENSION = ['', '.js', '.mjs'];
 
 export async function findMemifile() {
   const MEMIFILE_NAME = [];
