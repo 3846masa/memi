@@ -5,6 +5,7 @@ import npm from 'npm';
 import konan from 'konan';
 import devNull from 'dev-null';
 import resolveFrom from 'resolve-from';
+import ora from 'ora';
 
 import { MEMI_MODULES_FOLDER } from '../const';
 
@@ -47,18 +48,25 @@ export async function installDependencies(filePath) {
   const notInstalled = await _findNotInstalledDependencies(filePath);
 
   if (notInstalled.length !== 0) {
+    const spinner = ora('Install dependencies').start();
     const originalLogger = console.log;
     console.log = () => {};
 
-    await util.promisify(npm.load)({
-      global: true,
-      progress: false,
-      loglevel: 'silent',
-      logstream: devNull(),
-      prefix: MEMI_MODULES_FOLDER,
-    });
-    await util.promisify(npm.commands.install)(notInstalled);
-
+    try {
+      await util.promisify(npm.load)({
+        global: true,
+        progress: false,
+        loglevel: 'silent',
+        logstream: devNull(),
+        prefix: MEMI_MODULES_FOLDER,
+      });
+      await util.promisify(npm.commands.install)(notInstalled);
+      spinner.clear();
+    } catch (err) {
+      console.log = originalLogger;
+      spinner.fail(err.message);
+      throw err;
+    }
     console.log = originalLogger;
   }
 }
