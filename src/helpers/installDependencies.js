@@ -7,7 +7,7 @@ import devNull from 'dev-null';
 import resolveFrom from 'resolve-from';
 import ora from 'ora';
 
-import { MEMI_MODULES_FOLDER } from '../const';
+import { MEMI_PREFIX } from '../const';
 
 /**
  * @param {string} filePath
@@ -58,7 +58,7 @@ export async function installDependencies(filePath) {
         progress: false,
         loglevel: 'silent',
         logstream: devNull(),
-        prefix: MEMI_MODULES_FOLDER,
+        prefix: MEMI_PREFIX,
       });
       await util.promisify(npm.commands.install)(notInstalled);
       spinner.clear();

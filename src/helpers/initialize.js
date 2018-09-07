@@ -3,7 +3,7 @@ import libpath from 'path';
 import updateNotifier from 'update-notifier';
 import { addPath } from 'app-module-path';
 
-import { MEMI_MODULES_FOLDER } from '../const';
+import { MEMI_MODULES_FOLDER, GLOBAL_MODULES_FOLDER } from '../const';
 
 const pkg = require('../../package.json');
 
@@ -16,5 +16,7 @@ export async function initialize() {
   if (!(await fs.pathExists(MEMI_MODULES_FOLDER))) {
     await fs.ensureDir(MEMI_MODULES_FOLDER);
   }
-  addPath(libpath.resolve(MEMI_MODULES_FOLDER, 'node_modules'));
+
+  addPath(GLOBAL_MODULES_FOLDER);
+  addPath(MEMI_MODULES_FOLDER);
 }
