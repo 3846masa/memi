@@ -1,5 +1,4 @@
 import fs from 'fs-extra';
-import libpath from 'path';
 import updateNotifier from 'update-notifier';
 import { addPath } from 'app-module-path';
 
