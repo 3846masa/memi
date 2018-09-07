@@ -28,7 +28,7 @@ export async function _findNotInstalledDependencies(filePath) {
       }
     } else {
       if (/^\./.test(moduleName)) {
-        throw new Error(`Cannot resolve ${moduleName} at ${filePath}.`);
+        throw new Error(`Can't resolve ${moduleName} at ${filePath}.`);
       } else {
         notInstalled.push(moduleName);
       }
