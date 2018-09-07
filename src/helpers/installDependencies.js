@@ -11,7 +11,7 @@ import { MEMI_PREFIX } from '../const';
 
 /**
  * @param {string} filePath
- * @returns {string[]}
+ * @returns {Promise<string[]>}
  */
 export async function _findNotInstalledDependencies(filePath) {
   const source = await fs.readFileSync(filePath, 'utf8');
