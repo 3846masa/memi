@@ -15,39 +15,47 @@ MEMI is simple task-runner, inspired by [mimorisuzuko/memi].
 
 ```bash
 npm i -g memi
-# -- OR --
-yarn global add memi
+```
+
+```bash
+# When you install via yarn, you should install `npm` too.
+yarn global add npm memi
 ```
 
 ## Usage
 
 1. Put Memifile on working directory
-    - MEMI loads Memifile named as below
-        - `Memifile` / `.memifile`
-        - `Memifile.{js,mjs}` / `.memifile.{js,mjs}`
+   - MEMI loads Memifile named as below
+     - `Memifile` / `.memifile`
+     - `Memifile.{js,mjs}` / `.memifile.{js,mjs}`
 2. Write task functions as module
-    - See [example](./example)
-      ```js
-      import inquirer from 'inquirer';
-      import cowsay from 'cowsay';
 
-      export default {
-        async start() {
-          const { text } = await inquirer.prompt([{
-            name: 'text',
-            message: "How's it going?",
-          }]);
-          this.echo(text);
-        },
-        echo(text = 'Hello Memi!') {
-          console.log(cowsay.say({ text }));
-        }
-      };
-      ```
+   - See [example](./example)
+
+     ```js
+     import inquirer from 'inquirer';
+     import cowsay from 'cowsay';
+
+     export default {
+       async start() {
+         const { text } = await inquirer.prompt([
+           {
+             name: 'text',
+             message: "How's it going?",
+           },
+         ]);
+         this.echo(text);
+       },
+       echo(text = 'Hello Memi!') {
+         console.log(cowsay.say({ text }));
+       },
+     };
+     ```
+
 3. Run task
-    ```bash
-    memi <taskname> [<args>...]
-    ```
+   ```bash
+   memi <taskname> [<args>...]
+   ```
 
 ### Tips: Useful libraries when you write tasks
 

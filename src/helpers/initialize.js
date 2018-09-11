@@ -1,5 +1,4 @@
 import fs from 'fs-extra';
-import libpath from 'path';
 import updateNotifier from 'update-notifier';
 import { addPath } from 'app-module-path';
 
@@ -16,5 +15,6 @@ export async function initialize() {
   if (!(await fs.pathExists(MEMI_MODULES_FOLDER))) {
     await fs.ensureDir(MEMI_MODULES_FOLDER);
   }
-  addPath(libpath.resolve(MEMI_MODULES_FOLDER, 'node_modules'));
+
+  addPath(MEMI_MODULES_FOLDER);
 }
