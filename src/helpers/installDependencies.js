@@ -14,7 +14,7 @@ import { MEMI_MODULES_FOLDER } from '../const';
  * @returns {string[]}
  */
 export async function _findNotInstalledDependencies(filePath) {
-  const source = await fs.readFileSync(filePath, 'utf8');
+  const source = await fs.readFile(filePath, 'utf8');
   const { strings: moduleList } = konan(source);
   const notInstalled = [];
 
