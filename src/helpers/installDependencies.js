@@ -28,7 +28,7 @@ export async function _findNotInstalledDependencies(filePath) {
       }
     } else {
       if (/^\./.test(moduleName)) {
-        throw new Error(`Can't resolve ${moduleName} at ${filePath}.`);
+        throw new Error(`Coundn't resolve ${moduleName} from ${filePath}.`);
       } else {
         notInstalled.push(moduleName);
       }
@@ -48,7 +48,7 @@ export async function installDependencies(filePath) {
   const notInstalled = await _findNotInstalledDependencies(filePath);
 
   if (notInstalled.length !== 0) {
-    const spinner = ora('Install dependencies').start();
+    const spinner = ora('Installing dependencies').start();
     const originalLogger = console.log;
     console.log = () => {};
 

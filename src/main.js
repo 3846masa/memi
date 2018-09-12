@@ -6,7 +6,7 @@ async function main() {
 
   const memifilePath = await findMemifile();
   if (!memifilePath) {
-    throw new Error("Memifile doesn't exist in current directory.");
+    throw new Error("Memifile doesn't exist.");
   }
   await installDependencies(memifilePath);
 
@@ -18,7 +18,7 @@ async function main() {
     process.exit(1);
   }
   if (!taskName in tasks || typeof tasks[taskName] !== 'function') {
-    throw new Error(`${taskName} doesn't exist in Memifile.`);
+    throw new Error(`Task "${taskName}" not found.`);
   }
 
   try {
