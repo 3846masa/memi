@@ -54,7 +54,6 @@ export async function installDependencies(filePath) {
 
     try {
       await util.promisify(npm.load)({
-        global: true,
         progress: false,
         loglevel: 'silent',
         logstream: devNull(),
