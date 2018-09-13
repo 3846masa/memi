@@ -24,7 +24,7 @@ export async function _findNotInstalledDependencies(filePath) {
     if (resolvedPath) {
       if (/^\./.test(moduleName)) {
         // If path is relative, resolve dependencies recursive.
-        notInstalled.push(..._findNotInstalledDependencies(resolvedPath));
+        notInstalled.push(...(await _findNotInstalledDependencies(resolvedPath)));
       }
     } else {
       if (/^\./.test(moduleName)) {
