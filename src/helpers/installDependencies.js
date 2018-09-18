@@ -60,7 +60,7 @@ export async function installDependencies(filePath) {
         prefix: MEMI_PREFIX,
       });
       await util.promisify(npm.commands.install)(notInstalled);
-      spinner.clear();
+      spinner.stop();
     } catch (err) {
       console.log = originalLogger;
       spinner.fail(err.message);
