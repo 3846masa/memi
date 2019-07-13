@@ -25,7 +25,7 @@
     "fs-extra": "^8.1.0",
     "konan": "^1.2.1",
     "ora": "^3.4.0",
-    "resolve-from": "^4.0.0",
+    "resolve-from": "^5.0.0",
     "update-notifier": "^2.5.0"
   },
   "peerDependencies": {
